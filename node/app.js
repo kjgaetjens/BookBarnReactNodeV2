@@ -1,14 +1,16 @@
 const express = require('express')
 const app = express();
 const PORT = 5000
-const models = require('../models')
+const models = require('./models')
+const cors = require('cors')
 app.use(express.json())
-app.use(express.cors())
+app.use(cors())
 
 app.get('/', (req,res)=>{
-    models.Books.findAll({
-        attributes: []
-    })
+    // models.Books.findAll({
+    //     attributes: []
+    // })
+    res.send('test')
 })
 app.post('/add-book', (req,res)=>{
     let title = req.body.title
