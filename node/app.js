@@ -1,15 +1,15 @@
 const express = require('express')
 const app = express();
 const PORT = 5000
-const models = require('./models')
+global.models = require('./models')
 const cors = require('cors')
 app.use(express.json())
 app.use(cors())
 
 app.get('/', (req,res)=>{
-    // models.Books.findAll({
-    //     attributes: []
-    // })
+    models.Book.findAll({
+        attributes: []
+    })
     res.send('test')
 })
 app.post('/add-book', (req,res)=>{
@@ -19,11 +19,11 @@ app.post('/add-book', (req,res)=>{
     let year = req.body.year
     let imageURL = req.body.imageURL
 
-    models.Books.create({
+    models.Book.create({
         title: title,
         genre: genre,
         publisher: publisher,
-        year: year,
+        year: parseInt(year),
         imageURL: imageURL
     })
     res.redirect('/')
@@ -31,7 +31,7 @@ app.post('/add-book', (req,res)=>{
 
 app.post('/delete-books/:bookid', (req,res)=>{
     let bookid = req.params.bookid
-    models.Books.destroy({
+    models.Book.destroy({
         where: {
             bookid:bookid
         }
