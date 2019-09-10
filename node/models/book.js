@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     genre: DataTypes.STRING,
     publisher: DataTypes.STRING,
     year: DataTypes.INTEGER,
-    imgURL: DataTypes.STRING
+    imageURL: DataTypes.STRING
   }, {});
   return Book;
 };
