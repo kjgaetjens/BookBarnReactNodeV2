@@ -8,10 +8,10 @@ app.use(cors())
 
 app.get('/', (req,res)=>{
     models.Book.findAll({
-        attributes: []
-    })
-    res.send('test')
+    }).then(books => res.json(books)
+    )
 })
+
 app.post('/add-book', (req,res)=>{
     let title = req.body.title
     let genre = req.body.genre
